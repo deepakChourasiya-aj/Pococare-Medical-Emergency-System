@@ -6,8 +6,10 @@ const { authenticator } = require("./middlewares/authenticator");
 const { validRoleAuth } = require("./middlewares/validRoleAuth");
 const { slotsRoute } = require("./routes/slots.route");
 const { appointmentRoute } = require("./routes/appointment.route");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 

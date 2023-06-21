@@ -1,16 +1,18 @@
 const express = require("express");
-const { User } = require("../models/user.model");
-const { AppointmentModel } = require("../models/appointment");
+
+const { validRoleAuth } = require("../middlewares/validRoleAuth");
+const {
+  cancelAppointment,
+  bookAppointment,
+} = require("../controller/appointment.controller");
 const appointmentRoute = express.Router();
 
-
-appointmentRoute.post("/apt", async (req, res) => {
-  try {
-
-  } catch (error) {
-
-  }
-});
+appointmentRoute.post(
+  "/apt/:doctorId/:slotId",
+  validRoleAuth(["patient"]),
+  bookAppointment
+);
+appointmentRoute.delete("/apt", validRoleAuth(["patient"]), cancelAppointment);
 
 module.exports = {
   appointmentRoute,

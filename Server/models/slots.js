@@ -7,9 +7,18 @@ const slotSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    availableSlots: [{ startTime: Date, endTime: Date }],
+    availableSlots: [
+      {
+        startTime: String,
+        endTime: String,
+        status: {
+          type: Boolean,
+          default: false
+        },
+      },
+    ],
   },
-  { versionKey: "version" } 
+  { versionKey: "version" }
 );
 
 // Create the model for slots

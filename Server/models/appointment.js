@@ -11,6 +11,10 @@ const appointmentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    slotId:{
+        type: String,
+        required: true,
+    },
     patientName: {
       type: String,
       required: true,
@@ -32,8 +36,7 @@ const appointmentSchema = mongoose.Schema(
       required: true,
     },
     address: {
-      type: String,
-      required: true,
+      type: String
     },
     status: {
       type: Boolean,
@@ -47,8 +50,9 @@ const appointmentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    startTime: { type: Date, required: true },
-    endTime: { type: Date, required: true },
+    time:{
+        type: String
+    },
     createdAt: {
       type: Date,
       default: Date.now,
