@@ -11,9 +11,14 @@ const appointmentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    slotId:{
-        type: String,
-        required: true,
+    slotId: {
+      type: String,
+      required: true,
+    },
+    appointmentType: {
+      type: String,
+      enum: ["offline", "videoconsult"],
+      default: "offline",
     },
     patientName: {
       type: String,
@@ -36,7 +41,7 @@ const appointmentSchema = mongoose.Schema(
       required: true,
     },
     address: {
-      type: String
+      type: String,
     },
     status: {
       type: Boolean,
@@ -50,15 +55,15 @@ const appointmentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    time:{
-        type: String
+    time: {
+      type: String,
     },
     createdAt: {
       type: Date,
       default: Date.now,
     },
   },
-  { versionKey: "version" } 
+  { versionKey: "version" }
 );
 
 // Create the model for appointments

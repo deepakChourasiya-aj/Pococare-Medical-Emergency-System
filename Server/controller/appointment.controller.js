@@ -9,6 +9,7 @@ const bookAppointment = async (req, res) => {
     const slotId = req.params.slotId;
     let patientId = req.body.userID;
     const {
+      appointmentType,
       patientName,
       ageOfPatient,
       gender,
@@ -46,6 +47,7 @@ const bookAppointment = async (req, res) => {
         patientId,
         doctorId,
         slotId,
+        appointmentType,
         patientName,
         doctorName,
         ageOfPatient,
