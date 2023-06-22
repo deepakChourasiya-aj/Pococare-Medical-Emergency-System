@@ -14,10 +14,9 @@
 </style>
 
 <body>
-    <h1 style="text-align: center;" >All Doctors</h1>
+    <h1 style="text-align: center;">All Doctors</h1>
     <div id="doctors-cont">
         <div class="container">
-
             <!-- <div class="doctors" style="border: 3px solid black;">
                 <div style="background-color: burlywood;">
                     <img style="border-radius: 50%;"
@@ -75,15 +74,20 @@
     const container = document.querySelector(".container");
 
     async function allDoctors() {
-        let res = await fetch("http://localhost:8080/api/alldoctors", {
+        let res = await fetch("http://localhost:8080/api/doctors/access", {
             headers: {
-                "Content-Type": "application/json",
-                Authorization: JSON.parse(localStorage.getItem("token")),
+                "Content-Type": "application/json"
             }
         });
         res = await res.json();
         console.log(res)
-        appendData(res.doctors);
+        if (res.ok) {
+            alert(res.msg)
+            appendData(res.doctors);
+        } else {
+            alert(res.msg)
+            appendData(res.doctors);
+        }
     }
     allDoctors();
     function appendData(doc) {
@@ -108,9 +112,13 @@
         const doctor = document.querySelectorAll(".doctor-id");
         for (let doctorId of doctor) {
             doctorId.addEventListener("click", (e) => {
-                console.log(e.target.id, "click book button");
                 localStorage.setItem("doctorId", JSON.stringify(e.target.id));
-                window.location.href = "./bookApp.html";
+                let checkLogged = localStorage.getItem("token");
+                if (checkLogged == null) {
+                    return alert("Please Login first")
+                } else {
+                    window.location.href = "./bookApp.html";
+                }
             })
         }
     }
