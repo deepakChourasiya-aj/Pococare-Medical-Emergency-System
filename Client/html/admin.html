@@ -38,7 +38,6 @@
     </div>
 </body>
 
-
 </html>
 <script>
     const baseURL = "http://localhost:8080/api"
@@ -85,7 +84,7 @@
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.msg,data);
+                console.log(data.msg, data);
                 // Process the response data
             } else {
                 console.log("Request failed with status:", response.status);

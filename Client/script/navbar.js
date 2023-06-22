@@ -30,8 +30,8 @@ document.getElementById("nav-login").addEventListener("click",(e)=>{
 })
 
 document.getElementById("find-doc").addEventListener("click",(e)=>{
-    window.location.href = "./html/doctors.html";
+    window.location.href = "./html/available.html";
 })
 document.getElementById("book-app").addEventListener("click",(e)=>{
-    window.location.href = "./html/doctors.html";
+    window.location.href = "./html/available.html";
 })

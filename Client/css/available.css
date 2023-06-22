@@ -1,9 +1,19 @@
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
 .container{
     display: flex;
+    align-items:center ;
+    justify-content: center;
+    gap:30px
 }
 .doctors{
-    padding: 20px;
+    padding: 10px;
 }
 .slots>div{
     display: flex;
+}
+#doctors-cont{
+    margin: auto;
 }

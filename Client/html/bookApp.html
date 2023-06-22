@@ -1,12 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bookApp.css">
     <title>Book App</title>
 </head>
+
 <body>
     <h1>Book Appointment</h1>
-    
+    <div class="main">
+        <div class="doctor-detail">
+            <div id="container">
+
+            </div>
+            <div id="slots">
+
+            </div>
+        </div>
+        <div class="appointment-details">
+            <div class="container-form">
+                <h1>Appointment Form</h1>
+                <form id="submitform">
+                    <div class="form-group">
+                        <label for="appointmentType">Appointment Type:</label>
+                        <select id="appointmentType" name="appointmentType">
+                            <option value="offline">Offline</option>
+                            <option value="videoconsult">Video Consultation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patientName">Patient Name:</label>
+                        <input type="text" id="patientName" name="patientName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ageOfPatient">Age of Patient:</label>
+                        <input type="text" id="ageOfPatient" name="ageOfPatient" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <input type="text" id="gender" name="gender" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="problemDescription">Problem Description:</label>
+                        <textarea id="problemDescription" name="problemDescription" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appointmentDate">Appointment Date:</label>
+                        <input type="date" id="appointmentDate" name="appointmentDate" required>
+                    </div>
+
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
+<script>
+    let url = `http://localhost:8080/api/doctor`
+    async function allDoctors() {
+        let doctorId = JSON.parse(localStorage.getItem("doctorId"));
+        let URL = `${url}/${doctorId}`
+        let res = await fetch(URL, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: JSON.parse(localStorage.getItem("token")),
+            }
+        });
+        res = await res.json();
+        console.log(res, 'available doctors')
+        appendData(res.data.doctor, res.data.slot.availableSlots);
+    }
+    allDoctors();
+
+    function appendData(doc, slot) {
+        console.log(doc, slot)
+        let container = document.getElementById("container");
+        let slots = document.getElementById("slots");
+        container.innerHTML =
+            `<div class="doctors" style="border: 3px solid black;">
+                <div style="background-color: burlywood;">
+                    <img style="border-radius: 50%;"
+                        src="${doc.image}"
+                        alt="">
+                    <h4>Name ${doc.doctorName}</h4>
+                    <h5>Qualifications : ${doc.qualifications}</h5>
+                    <h5>Experience ${doc.experience}</h5>
+                    <h5>Speciality ${doc.speciality}</h5>
+                    <h5>Fees ${doc.setfees}</h5>
+                    <strong>${doc.isAvailable ? "Available" : "Not Available"}</strong>
+                </div>
+            </div>`
+
+        slots.innerHTML = slot.map((slot) => {
+            return `
+             <button id="${slot._id}" class="bookSlot">${slot.startTime} - ${slot.endTime} </button>
+             <span>${slot.status ? "Booked " : "Available"}</span>
+            `
+        }).join(" ")
+        let bookSlot = document.querySelectorAll(".bookSlot");
+        for (let slot of bookSlot) {
+            slot.addEventListener("click", (e) => {
+                console.log(e.target.id, 'slot id');
+                localStorage.setItem("slotId", JSON.stringify(e.target.id));
+
+            })
+        }
+    }
+
+    document.getElementById("submitform").addEventListener("submit", (e) => {
+        e.preventDefault();
+        let appointmentType = document.getElementById("appointmentType").value;
+        let patientName = document.getElementById("patientName").value;
+        let ageOfPatient = document.getElementById("ageOfPatient").value;
+        let gender = document.getElementById("gender").value;
+        let problemDescription = document.getElementById("problemDescription").value;
+        let address = document.getElementById("address").value;
+        let appointmentDate = document.getElementById("appointmentDate").value;
+        const obj = {
+            appointmentType,
+            patientName,
+            ageOfPatient,
+            gender,
+            problemDescription,
+            address,
+            appointmentDate,
+        }
+        console.log(obj);
+        confirmAppointment(obj)
+    });
+
+    async function confirmAppointment(obj) {
+        let doctorId = JSON.parse(localStorage.getItem("doctorId"));
+        let slotId = JSON.parse(localStorage.getItem("slotId"));
+        let url = `http://localhost:8080/api/apt/${doctorId}/${slotId}`;
+        let res = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: JSON.parse(localStorage.getItem("token")),
+            },
+            body: JSON.stringify(obj)
+        });
+        res = await res.json();
+        console.log(res);
+        if (res.ok) {
+            alert(res.msg + "Pay the amount for final confirmation");
+        } else {
+            alert(res.msg);
+        }
+    }
+
+
+</script>

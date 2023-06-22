@@ -102,13 +102,13 @@
         if (res.ok) {
             alert(data.msg)
             alert(data.msg);
-        if (data.role == 'patient') {
-            console.log(data.msg.role,'check')
-            window.location.href = "../index.html"
-        }
-        if (data.role == 'doctor') {
-            window.location.href = "./profile.html"
-        }
+            if (data.role == 'patient') {
+                console.log(data.msg.role, 'check')
+                window.location.href = "../index.html"
+            }
+            if (data.role == 'doctor') {
+                window.location.href = "./profile.html"
+            }
         } else {
             alert('error in registering ')
         }
