@@ -7,6 +7,7 @@ const { validRoleAuth } = require("./middlewares/validRoleAuth");
 const { slotsRoute } = require("./routes/slots.route");
 const { appointmentRoute } = require("./routes/appointment.route");
 const cors = require("cors");
+const multer = require("multer");
 const { doctorProfileRoute } = require("./routes/profile.route");
 const { cloudinary } = require("./configuration/cloudinary");
 const { upload } = require("./routes/saveToCloud");

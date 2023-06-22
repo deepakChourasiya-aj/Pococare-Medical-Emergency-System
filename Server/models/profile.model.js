@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const profileSchema = mongoose.Schema(
   {
-    doctorId:{
-        type: String,
-        required: true, 
+    doctorId: {
+      type: String,
+      required: true,
     },
     image: {
       type: String,
@@ -15,6 +15,10 @@ const profileSchema = mongoose.Schema(
       required: true,
     },
     qualifications: {
+      type: String,
+      required: true,
+    },
+    speciality: {
       type: String,
       required: true,
     },
@@ -29,10 +33,6 @@ const profileSchema = mongoose.Schema(
     city: {
       type: String,
       required: true,
-    },
-    status: {
-      type: Boolean,
-      default: false,
     },
     isAvailable: {
       type: Boolean,

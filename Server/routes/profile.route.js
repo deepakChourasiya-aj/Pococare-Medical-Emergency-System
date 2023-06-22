@@ -3,10 +3,12 @@ const { validRoleAuth } = require("../middlewares/validRoleAuth");
 const { DoctorsProfile } = require("../models/profile.model");
 const { User } = require("../models/user.model");
 const { upload } = require("./saveToCloud");
+const multer = require("multer");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const express = require("express");
+const { Slots } = require("../models/slots");
 const doctorProfileRoute = express.Router();
 
 doctorProfileRoute.post(
@@ -31,6 +33,7 @@ doctorProfileRoute.post(
         const {
           doctorName,
           qualifications,
+          speciality,
           experience,
           setfees,
           city,
@@ -42,6 +45,7 @@ doctorProfileRoute.post(
           image: result.url,
           doctorName,
           qualifications,
+          speciality,
           experience,
           setfees,
           city,
@@ -62,6 +66,41 @@ doctorProfileRoute.post(
     );
   }
 );
+doctorProfileRoute.get("/doctor/:doctorId", async (req, res) => {
+  try {
+    const doctorId = req.params.doctorId;
+    const doctor = await DoctorsProfile.findOne({ doctorId });
+    const slot = await Slots.findOne({ doctorId });
+    if (doctor && slot) {
+      return res.send({ msg: "doctor is available", data: { doctor, slot } });
+    } 
+    if(doctor!=null){
+      {
+        return res.send({
+          msg: "No slots is available for this doctor",
+          data: { doctor },
+        });
+      }
+    }else{
+      return res.send({
+        msg: "Doctor not found ",
+      });
+    }
+  } catch (error) {
+    console.log("error", error);
+    res.send({ msg: "error", error: error });
+  }
+});
+doctorProfileRoute.get("/alldoctors", async (req, res) => {
+  try {
+    const doctors = await DoctorsProfile.find({});
+    console.log(doctors);
+    res.send({ msg: "doctors", doctors: doctors });
+  } catch (error) {
+    console.log("error", error);
+    res.send({ msg: "error", error: error });
+  }
+});
 
 module.exports = {
   doctorProfileRoute,

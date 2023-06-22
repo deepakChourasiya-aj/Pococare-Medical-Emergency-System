@@ -70,7 +70,7 @@ const bookAppointment = async (req, res) => {
 
       if (updatedSlot && bookApp) {
         return res.send({
-          msg: "Appointment booked successfully updated",
+          msg: "Appointment detailed  submitted successfully make a payment",
           bookApp: bookApp,
         });
       }
@@ -80,7 +80,7 @@ const bookAppointment = async (req, res) => {
       return res.send({ msg: "This slot is already booked" });
     }
 
-    res.send({ msg: "availableSlots" });
+    res.send({ msg: "This slot is already booked" });
   } catch (error) {
     console.log("error in appointment booking: " + error);
     res.send({ msg: "Server error in appointment booking" });
