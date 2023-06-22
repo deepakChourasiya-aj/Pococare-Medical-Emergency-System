@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/available.css">
+    <title>Available doctors</title>
+</head>
+<style>
+    body {
+        font-family: sans-serif;
+    }
+</style>
+
+<body>
+    <div id="doctors-cont">
+        <div class="container">
+
+            <div class="doctors" style="border: 3px solid black;">
+                <div style="background-color: burlywood;">
+                    <img style="border-radius: 50%;"
+                        src="https://static1.personality-database.com/profile_images/03efe57d24b74353b2fb7575e8c9f3a1.png"
+                        alt="">
+                    <h4>Name DEEPAK CHOURASIYA</h4>
+                    <h5>Qualifications MBBS MUMBAI</h5>
+                    <h5>Experience 2 YEARS</h5>
+                    <h5>Fees 2000</h5>
+                </div>
+                <div style="background-color: aqua;" class="slots">
+                    <h4> Slots</h4>
+                    <div style="border : 3px solid red">
+                        <button>11 - 12 PM</button>
+                        <br>
+                        <span>Available </span>
+                    </div>
+                    <div style="border : 3px solid red">
+                        <button>11 - 12 PM</button>
+                        <br>
+                        <span>Available </span>
+                    </div>
+                </div>
+            </div>
+            <div class="doctors" style="border: 3px solid black;">
+                <div style="background-color: burlywood;">
+                    <img style="border-radius: 50%;"
+                        src="https://static1.personality-database.com/profile_images/03efe57d24b74353b2fb7575e8c9f3a1.png"
+                        alt="">
+                    <h4>Name DEEPAK CHOURASIYA</h4>
+                    <h5>Qualifications MBBS MUMBAI</h5>
+                    <h5>Experience 2 YEARS</h5>
+                    <h5>Fees 2000</h5>
+                </div>
+                <div style="background-color: aqua;" class="slots">
+                    <h4> Slots</h4>
+                    <div style="border : 3px solid red">
+                        <button>11 - 12 PM</button>
+                        <br>
+                        <span>Available </span>
+                    </div>
+                    <div style="border : 3px solid red">
+                        <button>11 - 12 PM</button>
+                        <br>
+                        <span>Available </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const container = document.querySelector(".container");
+
+    async function allDoctors() {
+        let res = await fetch("http://localhost:8080/api/alldoctors", {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: JSON.parse(localStorage.getItem("token")),
+            }
+        });
+        res = await res.json();
+        console.log(res)
+        appendData(res.doctors);
+    }
+    allDoctors();
+    function appendData(doc) {
+        container.innerHTML = doc.map((item) => {
+            return `
+            <div class="doctors" style="border: 3px solid black;">
+                <div style="background-color: burlywood;">
+                    <img style="border-radius: 50%;"
+                        src="${item.image}"
+                        alt="">
+                    <h4>Name ${item.doctorName}</h4>
+                    <h5>Qualifications : ${item.qualifications}</h5>
+                    <h5>Experience ${item.experience}</h5>
+                    <h5>Speciality ${item.speciality}</h5>
+                    <h5>Fees ${item.setfees}</h5>
+                    <strong>${item.isAvailable ? "Available" : "Not Available"}</strong>
+                    <button id="${item.doctorId}" class="doctor-id">Book Appointment</button>
+                </div>
+            </div>
+            `
+        }).join(' ');
+        const doctor = document.querySelectorAll(".doctor-id");
+        for (let doctorId of doctor) {
+            doctorId.addEventListener("click", (e) => {
+                console.log(e.target.id, "click book button");
+                localStorage.setItem("doctorId", JSON.stringify(e.target.id));
+                window.location.href = "./bookApp.html";
+            })
+        }
+    }
+</script>

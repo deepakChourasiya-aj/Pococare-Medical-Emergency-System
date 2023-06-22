@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+}
+.doctors{
+    padding: 20px;
+}
+.slots>div{
+    display: flex;
+}
