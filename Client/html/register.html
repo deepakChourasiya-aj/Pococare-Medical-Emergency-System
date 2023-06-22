@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+
+    <link rel="stylesheet" href="../css/register.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <section class="container forms">
+        <div class="form login">
+            <div class="form-content">
+                <header>Register</header>
+                <form action="#">
+                    <div class="field input-field">
+                        <input type="text" placeholder="First Name" class="input" id="firstName">
+                    </div>
+                    <div class="field input-field">
+                        <input type="text" placeholder="Last Name" class="input" id="lastName">
+                    </div>
+                    <div class="field input-field">
+                        <input type="email" placeholder="Email" class="input" id="email">
+                    </div>
+                    <div class="field input-field">
+                        <input type="tel" placeholder="Mobile No" class="input" id="mobile">
+                    </div>
+                    <div class="field input-field">
+                        <input type="password" placeholder="Password" class="password" id="password">
+                    </div>
+                    <div class="field input-field">
+                        <!-- <input type="tel" placeholder="Mobile No" class="input" id="mobile"> -->
+                        <select class="input" name="role" id="">
+                            <option value="doctor"> Doctor</option>
+                            <option value="patient">Patient</option>
+                        </select>
+                    </div>
+
+                    <div class="field button-field">
+                        <button id="signup">Signup</button>
+                    </div>
+                </form>
+
+                <div class="form-link">
+                    <span>Already have an account? <a href="login.html" class="link signup-link">Login</a></span>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script>
+    const baseURL = "http://localhost:8080/api/register"
+
+    let button = document.querySelector('#signup')
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        let firstName = document.getElementById("firstName").value
+        let lastName = document.getElementById("lastName").value
+        let email = document.getElementById("email").value
+        let mobile = document.getElementById("mobile").value
+        let password = document.getElementById("password").value
+        if (firstName &&
+            lastName &&
+            email &&
+            mobile &&
+            password) {
+            console.log('okk')
+        } else {
+            return alert('please fill the required detials')
+        }
+
+        let obj = {
+            firstName,
+            lastName,
+            email,
+            mobile,
+            password
+        }
+        console.log(obj);
+        register(obj);
+    })
+
+
+    async function register(obj) {
+        let res = await fetch(`${baseURL}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        })
+        let data = await res.json();
+        console.log(data);
+        if (res.ok) {
+            alert(data.msg)
+            alert(data.msg);
+        if (data.role == 'patient') {
+            console.log(data.msg.role,'check')
+            window.location.href = "../index.html"
+        }
+        if (data.role == 'doctor') {
+            window.location.href = "./profile.html"
+        }
+        } else {
+            alert('error in registering ')
+        }
+    }
+</script>

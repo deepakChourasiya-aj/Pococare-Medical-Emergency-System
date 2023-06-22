@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admin.css">
+    <title>Admin side</title>
+</head>
+
+<body>
+    <h1> Opon Slots Based On Your Availability</h1>
+    <div>
+        <section class="container forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header>Create Slots</header>
+                    <form id="formsubmit" action="#">
+                        <div class="field input-field">
+                            <label for="startTime">StartTime</label>
+                            <input style="margin-top: 20px;" type="time" name="startTime" placeholder="StartTime"
+                                class="startTime" id="startTime">
+                        </div>
+                        <div style=" margin-top: 68px;
+                        ;" class="field input-field">
+                            <label for="endTime">EndTime</label>
+                            <input style="margin-top: 20px;" type="time" placeholder="EndTime" class="endTime"
+                                id="endTime">
+                            <!-- <i class='bx bx-hide eye-icon'></i> -->
+                        </div>
+
+                        <div style="margin-top: 60px;" class="field button-field">
+                            <button type="submit" id="addSlot">Create Slot</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</body>
+
+
+</html>
+<script>
+    const baseURL = "http://localhost:8080/api"
+
+    const formsubmit = document.getElementById("formsubmit");
+    formsubmit.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const startTime = document.getElementById("startTime").value;
+        const endTime = document.getElementById("endTime").value;
+        let obj = {
+            startTime,
+            endTime
+        }
+        console.log(obj);
+        slotOpen(obj);
+        if (obj.startTime && obj.endTime) {
+        } else {
+            alert("Please fill the required fields")
+        }
+    })
+    // async function slotOpen(obj) {
+
+    //     const response = await fetch(`http://localhost:8080/api/slt`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": JSON.parse(localStorage.getItem("token"))
+    //         },
+    //         body: JSON.stringify(obj)
+    //     });
+    //     console.log(response.msg);
+    //     // try {
+    // }
+    async function slotOpen(obj) {
+        try {
+            const response = await fetch(`http://localhost:8080/api/slt`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: JSON.parse(localStorage.getItem("token")),
+                },
+                body: JSON.stringify(obj),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.msg,data);
+                // Process the response data
+            } else {
+                console.log("Request failed with status:", response.status);
+                // Handle the request failure
+            }
+        } catch (error) {
+            console.log("An error occurred:", error);
+            // Handle the error
+        }
+    }
+
+</script>

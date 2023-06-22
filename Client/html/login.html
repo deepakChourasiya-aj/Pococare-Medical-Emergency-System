@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../css/login.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <section class="container forms">
+        <div class="form login">
+            <div class="form-content">
+                <header>Login</header>
+                <form action="#">
+                    <div class="field input-field">
+                        <input type="email" placeholder="Email" class="email" id="email">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="password" placeholder="Password" class="password" id="password">
+                        <!-- <i class='bx bx-hide eye-icon'></i> -->
+                    </div>
+
+                    <div class="field button-field">
+                        <button id="login">Login</button>
+                    </div>
+                </form>
+
+                <div class="form-link">
+                    <span>Don't have an account? <a href="register.html" class="link signup-link">Register</a></span>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script>
+    const baseURL = "http://localhost:8080/api"
+
+    let button = document.querySelector("#login");
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        let email = document.querySelector('#email').value;
+        let password = document.querySelector('#password').value;
+        if (email && password) {
+            let obj = {
+                email,
+                password
+            };
+            console.log(obj);
+            loginToApp(obj);
+        } else {
+            return alert("Please fill the required details than you can login");
+        }
+    });
+
+    async function loginToApp(obj) {
+        let res = await fetch(`${baseURL}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(obj),
+        });
+        let data = await res.json();
+        console.log(data);
+        localStorage.setItem("token", JSON.stringify(data.token));
+        localStorage.setItem('name', JSON.stringify(data.name));
+        localStorage.setItem('role', JSON.stringify(data.role));
+        alert(data.msg);
+        if (data.role == 'patient') {
+            console.log(data.msg.role, 'check')
+            window.location.href = "../index.html"
+        }
+        if (data.role == 'doctor') {
+            window.location.href = "./profile.html"
+        }
+    }
+</script>

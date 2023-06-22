@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/profile.css">
+    <title>Create Profile</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+
+<body>
+
+    <h1> Create Your Profile </h1>
+    <div>
+        <section class="container forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header>Profile Details</header>
+                    <form action="#" id="formsubmit">
+                        <div class="field input-field">
+                            <input type="file" placeholder="first name" name="image" class="input" id="image" />
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="DoctorName" class="input" id="doctorName">
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="Qualifications" class="input" id="qualifications">
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="Speciality" class="input" id="speciality">
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="Experience" class="input" id="experience">
+                        </div>
+                        <div class="field input-field">
+                            <input type="number" placeholder="Fees" class="input" id="setfees">
+                        </div>
+                        <div class="field input-field">
+                            <input type="text" placeholder="City" class="input" id="city">
+                        </div>
+                        <div class="field button-field">
+                            <button id="submit" type="submit">Submit Details</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
+<script>
+
+    const baseURL = "http://localhost:8080/api"
+    // const baseURL = "http://localhost:8080/api";
+
+document.getElementById("formsubmit").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = document.getElementById("formsubmit");
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(`${baseURL}/profile`, {
+      method: "POST",
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem("token")),
+      },
+      body: JSON.stringify(formData),
+    });
+
+    console.log(response);
+    // Handle the response
+  } catch (error) {
+    // Handle the error
+    console.log(error);
+    alert("Please fill all the details and Model perfectly");
+  }
+});
+
+    // document.getElementById("formsubmit").addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+        let image = document.getElementById("image").value;
+        let doctorName = document.getElementById("doctorName").value;
+        let qualifications = document.getElementById("qualifications").value;
+        let speciality = document.getElementById("speciality").value;
+        let experience = document.getElementById("experience").value;
+        let setfees = document.getElementById("setfees").value;
+        let city = document.getElementById("city").value;
+        let data = {
+            image,
+            doctorName,
+            qualifications,
+            speciality,
+            experience,
+            setfees,
+            city
+        }
+         console.log(data);
+        const formData = new FormData();
+        formData.append("image", data.image);
+        formData.append("doctorName", data.doctorName);
+        formData.append("qualifications", data.qualifications);
+        formData.append("speciality", data.speciality);
+        formData.append("experience", data.setfees);
+        formData.append("city", data.city);
+        console.log(JSON.stringify(formData))
+
+        try {
+            const response = await fetch(`${baseURL}/profile`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: JSON.parse(localStorage.getItem("token")),
+                },
+                body:JSON.stringify(data)
+            });
+
+            console.log(response);
+            // Handle the response
+        } catch (error) {
+            // Handle the error
+            console.log(error);
+            alert("Please fill all the details and Model perfectly");
+        }
+    });
+</script>
