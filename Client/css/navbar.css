@@ -1,8 +1,11 @@
+body{
+    font-family: sans-serif;
+}
 li{
     list-style: none;
 }
 #navbar{
-    background-color: #0b76c6;
+    background-color:#120d6d;
     position: fixed;
     top:0;
     z-index: 1000;

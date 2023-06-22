@@ -28,3 +28,10 @@ document.getElementById("nav-reg").addEventListener("click",(e)=>{
 document.getElementById("nav-login").addEventListener("click",(e)=>{
     window.location.href = "./html/login.html"
 })
+
+document.getElementById("find-doc").addEventListener("click",(e)=>{
+    window.location.href = "./html/doctors.html";
+})
+document.getElementById("book-app").addEventListener("click",(e)=>{
+    window.location.href = "./html/doctors.html";
+})
