@@ -120,7 +120,7 @@ POST  http://localhost:8080/api/slots
 ```
 
 
-#### OEM DATA
+#### APPOINTMENT DATA
 
 ```javascript
 
