@@ -109,6 +109,22 @@ POST  http://localhost:8080/api/slots
  ### USERS DATA
 
 ```javascript
+{
+  "firstName": "Lionel",
+  "lastName": "Messi",
+  "email": "lionel@gmail.com",
+  "mobile": "8899939901",
+  "password": "123",
+  "role": "doctor"
+}
+{
+  "firstName": "Cristiano",
+  "lastName": "Ronaldo",
+  "email": "cristiano@gmail.com",
+  "mobile": "8889939901",
+  "password": "123",
+  "role": "doctor"
+}
 {  
     "firstName":"Ronaldo",
     "lastName":"Heror",
@@ -119,6 +135,28 @@ POST  http://localhost:8080/api/slots
 }
 ```
 
+#### PROFILE DATA
+
+```javascript
+
+{
+  "doctorName": "Dr. Lionel",
+  "qualifications": "MBBS, MD",
+  "speciality": "Neurology",
+  "experience": "13 years",
+  "setfees": 4000,
+  "city": "Delhi"
+}
+{
+  "doctorName": "Dr. Cristiano",
+  "qualifications": "MBBS, MD",
+  "speciality": "Cardiology",
+  "experience": "10 years",
+  "setfees": 200,
+  "city": "New York"
+}
+
+```
 
 #### APPOINTMENT DATA
 
