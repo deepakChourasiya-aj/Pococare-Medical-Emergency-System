@@ -106,7 +106,7 @@ POST  http://localhost:8080/api/slots
 ```
 
 
- ### USERS DATA/ USE EMAIL AND PASSWORD FOR LOGIN BELOW TO CHECK
+ ### USERS DATA/ USE EMAIL AND PASSWORD FOR LOGIN AS DOCTOR, BELOW  CHECK
 
 ```javascript
 {
@@ -191,6 +191,10 @@ password:123
 }
 
 ```
+![image](https://github.com/deepakChourasiya-aj/Pococare-Medical-Emergency-System/assets/109690823/13cb1943-3b18-41d7-9e12-e0628fb9e5f0)
+
+
+![image](https://github.com/deepakChourasiya-aj/Pococare-Medical-Emergency-System/assets/109690823/526cfd4f-e0f5-4d97-93fe-a1fa0204dc6e)
 
 
  
