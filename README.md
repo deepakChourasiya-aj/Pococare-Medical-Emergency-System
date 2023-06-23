@@ -83,10 +83,7 @@ npx nodemon index.js
    
    
 ## API Endpoints
-   #### Welcome
-```javascript
-GET  /
-```
+
   #### User Signup
 ```javascript
 POST  http/localhost:8080/register
