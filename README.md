@@ -106,7 +106,7 @@ POST  http://localhost:8080/api/slots
 ```
 
 
- ### USERS DATA
+ ### USERS DATA/ USE EMAIL AND PASSWORD FOR LOGIN BELOW TO CHECK
 
 ```javascript
 {
