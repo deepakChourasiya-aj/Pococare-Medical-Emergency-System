@@ -1,5 +1,5 @@
 const express = require("express");
-var cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const { connection } = require("./configuration/db");
 const { userRoute } = require("./routes/user.route");
 const { authenticator } = require("./middlewares/authenticator");
@@ -10,33 +10,34 @@ const cors = require("cors");
 const { doctorProfileRoute } = require("./routes/profile.route");
 const { accessRoute } = require("./routes/generalAccess.route");
 require("dotenv").config();
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api", userRoute);
-app.use("/api", accessRoute);
-app.use(authenticator);
-app.use("/api", doctorProfileRoute);
-app.use("/api", slotsRoute);
-app.use("/api", appointmentRoute);
+app.use("/api", userRoute); // Mounts user route at /api
+app.use("/api", accessRoute); // Mounts access route at /api
+app.use(authenticator); // Authenticates all routes below this middleware
+app.use("/api", doctorProfileRoute); // Mounts doctor profile route at /api
+app.use("/api", slotsRoute); // Mounts slots route at /api
+app.use("/api", appointmentRoute); // Mounts appointment route at /api
 
 app.get(
   "/",
-  authenticator,
-  validRoleAuth(["patient", "doctor"]),
+  authenticator, // Authenticates the route
+  validRoleAuth(["patient", "doctor"]), // Validates the role of the user
   (req, res) => {
-    res.send("welcome world");
+    res.send("Welcome, world!"); // Sends a welcome message
   }
 );
 
-const PORT = process.env.port;
-app.listen(PORT || 9000, async () => {
+const PORT = process.env.port || 9000; // Retrieves the port from environment variables or uses 9000 as a fallback
+app.listen(PORT, async () => {
   try {
-    await connection;
-    console.log(`connected at http://localhost:${process.env.port}`);
+    await connection; // Waits for the database connection to be established
+    console.log(`Connected at http://localhost:${PORT}`);
   } catch (error) {
-    console.log(error.message, "error connecting");
+    console.error("Error connecting:", error.message); // Prints an error message if there's an issue connecting to the database
   }
 });
