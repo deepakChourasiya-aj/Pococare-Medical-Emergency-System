@@ -122,8 +122,24 @@ const cancelAppointment = async (req, res) => {
     res.send({ msg: "Server error in appointment booking" });
   }
 };
-
+const checkAppointment = async (req, res) => {
+  try {
+    if (req.body.role == "doctor") {
+      const check = await AppointmentModel.find({ doctorId: req.body.userID });
+      return res.send({ msg: "Your upcoming appointment", data: check });
+    }
+    if (req.body.role == "patient") {
+      const check = await AppointmentModel.find({ patientId: req.body.userID });
+      return res.send({ msg: "Your upcoming appointmen", data: check });
+    } else {
+      return res.send({ msg: "Nothing found with associted user" });
+    }
+  } catch (error) {
+    res.send({ msg: "Server error" });
+  }
+};
 module.exports = {
   bookAppointment,
   cancelAppointment,
+  checkAppointment,
 };

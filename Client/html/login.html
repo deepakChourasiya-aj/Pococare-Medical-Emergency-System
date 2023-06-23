@@ -75,12 +75,12 @@
         localStorage.setItem('name', JSON.stringify(data.name));
         localStorage.setItem('role', JSON.stringify(data.role));
         alert(data.msg);
-        if (data.role == 'patient' || data.role == 'doctor') {
+        if (data.role == 'patient') {
             console.log(data.msg.role, 'check')
-            window.location.href = "../index.html"
+            window.location.href = "./checkAppointment.html"
         }
-        // if (data.role == 'doctor') {
-        //     window.location.href = "./profile.html"
-        // }
+        if (data.role == 'doctor') {
+            window.location.href = "./scheduling.html"
+        }
     }
 </script>

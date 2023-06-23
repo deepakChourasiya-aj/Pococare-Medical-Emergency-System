@@ -1,0 +1,45 @@
+body{
+  font-family: "Poppins", sans-serif;
+}
+.appointment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .appointment h3 {
+    margin: 0;
+  }
+  
+  .appointment p {
+    margin: 5px 0;
+  }
+  
+  .appointment p:first-child {
+    font-weight: bold;
+  }
+  .container {
+    width: 300px;
+    height: 200px;
+    background-color: rgb(202, 185, 33);
+    padding: 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  .time {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .join-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

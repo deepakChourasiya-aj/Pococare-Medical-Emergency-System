@@ -12,7 +12,7 @@ document.querySelector("#navbar").innerHTML = `
     </div>
     <div data-aos="zoom-out" data-aos-duration="1000" id="nav-menu">
         <li id="book-app">Book appointment</li>
-        <li id="find-doc">Specialist Doctors</li>
+        <li id="find-doc">Upcoming Appointment</li>
             <li id ="doctor-access">Create Profile</li>
         <li>Emergency Support</li>
     </div>
@@ -31,7 +31,7 @@ document.getElementById("nav-login").addEventListener("click",(e)=>{
 })
 
 document.getElementById("find-doc").addEventListener("click",(e)=>{
-    window.location.href = "./html/available.html";
+    window.location.href = "./html/checkAppointment.html";
 })
 document.getElementById("book-app").addEventListener("click",(e)=>{
     window.location.href = "./html/available.html";
@@ -41,6 +41,6 @@ document.getElementById("doctor-access").addEventListener("click",(e)=>{
   if(role==="doctor"){
       window.location.href = "./html/profile.html";
   }else{
-    alert("Access denied this special access only for doctors")
+    alert("Access denied this special access only for doctors");
   }
 })
