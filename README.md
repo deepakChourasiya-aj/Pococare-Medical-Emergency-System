@@ -135,6 +135,19 @@ POST  http://localhost:8080/api/slots
 }
 ```
 
+ ### USERS DATA/ LOGIN AS PATIENT TO CHECK APPOINTMENT
+
+```javascript
+{
+email:deepak@gmail.com
+password:123
+}
+{
+email:jy@gmail.com
+password:123
+}
+
+```
 #### PROFILE DATA
 
 ```javascript
