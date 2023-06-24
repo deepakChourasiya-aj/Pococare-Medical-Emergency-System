@@ -1,6 +1,5 @@
 # Pococare-Medical-Emergency-System
 
-
 Pococare-Medical-Emergency-System is a web-based application that allows users to book appointments with doctors. It provides a platform where users can easily schedule appointments for medical consultations and treatments. The system aims to streamline the process of accessing medical care by providing a convenient and efficient appointment booking system.
 
 <p align = "center">
@@ -34,41 +33,15 @@ Pococare-Medical-Emergency-System is a web-based application that allows users t
 -  Video consultation
 -  Offline consultation
 
-## Run Locally
-
-### Clone this Project
+###  Run Locally Clone this Project
 
 ```
 https://github.com/deepakChourasiya-aj/Pococare-Medical-Emergency-System.git
-```
-
-
-### Install npm Packages
-
-```javascript
-npm i --global
-```
-
-### Go to Backend Folder
-```javascript
-cd Server
-```
-
-### Run Server
-```javascript
-npx nodemon index.js
 ```
 ### Runs the project in the development mode
 
 [http://localhost:8080](http://localhost:8080)
 
-
-### Environment Variables Required
-`mongoURL`
-
-`key`
-
-`PORT`
 
 ## NPM Packages
 <p align = "center">
@@ -125,26 +98,19 @@ POST  http://localhost:8080/api/slots
   "password": "123",
   "role": "doctor"
 }
-{  
-    "firstName":"Ronaldo",
-    "lastName":"Heror",
-    "email": "ran@gmail.com",
-    "mobile":"8889939901",
-    "password": "123",
-    "role":"doctor"
-}
+
 ```
 
  ### USERS DATA/ LOGIN AS PATIENT TO CHECK APPOINTMENT
 
 ```javascript
 {
-email:deepak@gmail.com
-password:123
+  email:deepak@gmail.com
+  password:123
 }
 {
-email:jy@gmail.com
-password:123
+  email:jy@gmail.com
+  password:123
 }
 
 ```
@@ -160,37 +126,14 @@ password:123
   "setfees": 4000,
   "city": "Delhi"
 }
-{
-  "doctorName": "Dr. Cristiano",
-  "qualifications": "MBBS, MD",
-  "speciality": "Cardiology",
-  "experience": "10 years",
-  "setfees": 200,
-  "city": "New York"
-}
 
 ```
 
-#### APPOINTMENT DATA
 
-```javascript
+![image](https://github.com/deepakChourasiya-aj/Pococare-Medical-Emergency-System/assets/109690823/47911493-8b40-4e18-8f37-6f7be742882d)
 
-{
-  "doctorId":"23322315444"
-  "patientId":"23121212121"
-  "appointmentType": "Offline",
-  "patientName": "John Doe",
-  "doctorName": "Dr. Smith",
-  "ageOfPatient": 35,
-  "gender": "Male",
-  "problemDescription": "Experiencing back pain",
-  "address": "123 Main Street, City",
-  "status": "Confirmed",
-  "paymentStatus": "Unpaid",
-  "appointmentDate": "2023-06-25"
-}
 
-```
+
 ![image](https://github.com/deepakChourasiya-aj/Pococare-Medical-Emergency-System/assets/109690823/13cb1943-3b18-41d7-9e12-e0628fb9e5f0)
 
 
