@@ -20,7 +20,7 @@
     <div>
         <div id="appointmentsContainer">
         </div>
-        <div  id="appointmentJoin">
+        <div id="appointmentJoin">
             <!-- <div class="container">
                 <h2>Join Video Consultation here by using below link</h2>
                 <p class="time">--:--:--</p>
@@ -66,7 +66,7 @@
 
     async function confirmAppointment() {
         try {
-            let url = `https://poco-backend.onrender.com/api/apt`;
+            let url = `https://funny-worm-tights.cyclic.app/api/apt`;
             let res = await fetch(url, {
                 headers: {
                     "Content-Type": "application/json",
@@ -78,6 +78,7 @@
                 alert(res.msg);
             } else {
                 appointments(res.data);
+                console.log(res);
                 alert(res.msg);
             }
         } catch (error) {
@@ -99,7 +100,7 @@
 
         // Use the map() function to iterate over the array and generate HTML for each appointment
         const appointmentHTML = appointments.map((appointment) => {
-            const {
+            const { _id,
                 appointmentType,
                 patientName,
                 doctorName,
@@ -110,8 +111,9 @@
                 status,
                 paymentStatus,
                 appointmentDate,
+                time
             } = appointment;
-
+            console.log(appointment)
             // Generate the HTML for each appointment
             return `
     <div class="appointment">
@@ -125,10 +127,11 @@
       <p>Status: ${status ? "Completed" : "Pending"}</p>
       <p>Payment Status: ${paymentStatus ? "Paid" : "Unpaid"}</p>
       <p>Date: ${appointmentDate}</p>
+      <p>Time: ${time}</p>
       <div>${appointmentType == "videoconsult" ? `<div  id="joinMeet">
            Join Meet By Clicking on below
-           <a href="https://64949a6d38621502b3f4df6c--merry-conkies-5f1443.netlify.app/index.html"><button
-                        class="join-btn">Join</button></a>
+           <button
+                   id="${_id}"    class="join-btn">Join</button>
         </div>`: ``}</div>
     </div>
   `;
@@ -136,6 +139,13 @@
 
         // Append the generated HTML to the container element
         container.innerHTML = appointmentHTML.join("");
+        let data = document.querySelectorAll(".join-btn");
+        for (let buttons of data) {
+            buttons.addEventListener("click", (e) => {
+                localStorage.setItem("RoomID", JSON.stringify(e.target.id));
+                window.location.href = "../video/chat.html"
+            })
+        }
 
     }
 </script>

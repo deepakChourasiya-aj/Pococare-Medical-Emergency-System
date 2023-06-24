@@ -48,7 +48,7 @@ document.getElementById("nav-logout").addEventListener("click", (e) => {
   let token = localStorage.getItem("token");
   if (token == null || token == undefined) {
     alert("logout successfully");
-    window.location.reload();
+    window.location.href="../index.html"
   }
 });
 document.getElementById("doctor-access").addEventListener("click", (e) => {

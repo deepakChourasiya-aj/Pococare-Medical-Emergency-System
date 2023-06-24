@@ -75,7 +75,7 @@
 
 </html>
 <script>
-    let url = `https://poco-backend.onrender.com/api/doctor`
+    let url = `https://funny-worm-tights.cyclic.app/api/doctor`
     async function allDoctors() {
         let doctorId = JSON.parse(localStorage.getItem("doctorId"));
         let URL = `${url}/${doctorId}`
@@ -123,7 +123,9 @@
         for (let slot of bookSlot) {
             slot.addEventListener("click", (e) => {
                 console.log(e.target.id, 'slot id');
+                console.log(e.target.innerText, 'slot id');
                 localStorage.setItem("slotId", JSON.stringify(e.target.id));
+                localStorage.setItem("time", JSON.stringify(e.target.innerText));
 
             })
         }
@@ -138,6 +140,7 @@
         let problemDescription = document.getElementById("problemDescription").value;
         let address = document.getElementById("address").value;
         let appointmentDate = document.getElementById("appointmentDate").value;
+        let time = JSON.parse(localStorage.getItem("time"));
         const obj = {
             appointmentType,
             patientName,
@@ -146,6 +149,7 @@
             problemDescription,
             address,
             appointmentDate,
+            time
         }
         console.log(obj);
         confirmAppointment(obj)
@@ -154,7 +158,7 @@
     async function confirmAppointment(obj) {
         let doctorId = JSON.parse(localStorage.getItem("doctorId"));
         let slotId = JSON.parse(localStorage.getItem("slotId"));
-        let url = `https://poco-backend.onrender.com/api/apt/${doctorId}/${slotId}`;
+        let url = `https://funny-worm-tights.cyclic.app/api/apt/${doctorId}/${slotId}`;
         let res = await fetch(url, {
             method: "POST",
             headers: {
