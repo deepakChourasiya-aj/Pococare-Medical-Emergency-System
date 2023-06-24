@@ -129,26 +129,6 @@ POST  http://localhost:8080/api/slots
 
 ```
 
-#### APPOINTMENT DATA
-
-```javascript
-
-{
-  "doctorId":"23322315444"
-  "patientId":"23121212121"
-  "appointmentType": "Offline",
-  "patientName": "John Doe",
-  "doctorName": "Dr. Smith",
-  "ageOfPatient": 35,
-  "gender": "Male",
-  "problemDescription": "Experiencing back pain",
-  "address": "123 Main Street, City",
-  "status": "Confirmed",
-  "paymentStatus": "Unpaid",
-  "appointmentDate": "2023-06-25"
-}
-
-```
 
 ![image](https://github.com/deepakChourasiya-aj/Pococare-Medical-Emergency-System/assets/109690823/47911493-8b40-4e18-8f37-6f7be742882d)
 
