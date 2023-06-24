@@ -23,25 +23,22 @@
                     <header>Profile Details</header>
                     <form action="#" id="formsubmit">
                         <div class="field input-field">
-                            <input type="file" placeholder="first name" name="image" class="input" id="image" />
+                            <input type="text" placeholder="DoctorName" required class="input" id="doctorName">
                         </div>
                         <div class="field input-field">
-                            <input type="text" placeholder="DoctorName" class="input" id="doctorName">
+                            <input type="text" placeholder="Qualifications" required class="input" id="qualifications">
                         </div>
                         <div class="field input-field">
-                            <input type="text" placeholder="Qualifications" class="input" id="qualifications">
+                            <input type="text" placeholder="Speciality" required class="input" id="speciality">
                         </div>
                         <div class="field input-field">
-                            <input type="text" placeholder="Speciality" class="input" id="speciality">
+                            <input type="text" placeholder="Experience" required class="input" id="experience">
                         </div>
                         <div class="field input-field">
-                            <input type="text" placeholder="Experience" class="input" id="experience">
+                            <input type="number" placeholder="Fees" required class="input" id="setfees">
                         </div>
                         <div class="field input-field">
-                            <input type="number" placeholder="Fees" class="input" id="setfees">
-                        </div>
-                        <div class="field input-field">
-                            <input type="text" placeholder="City" class="input" id="city">
+                            <input type="text" placeholder="City" required class="input" id="city">
                         </div>
                         <div class="field button-field">
                             <button id="submit" type="submit">Submit Details</button>
@@ -56,78 +53,62 @@
 </html>
 <script>
 
-    const baseURL = "http://localhost:8080/api"
-    // const baseURL = "http://localhost:8080/api";
+    const baseURL = "https://poco-backend.onrender.com/api"
 
-    document.getElementById("formsubmit").addEventListener("submit", async (e) => {
+    document.getElementById("formsubmit").addEventListener("submit", (e) => {
         e.preventDefault();
+        let doctorName = document.getElementById("doctorName").value;
+        let qualifications = document.getElementById("qualifications").value;
+        let speciality = document.getElementById("speciality").value;
+        let experience = document.getElementById("experience").value;
+        let setfees = document.getElementById("setfees").value;
+        let city = document.getElementById("city").value;
+        let data = {
+            doctorName,
+            qualifications,
+            speciality,
+            experience,
+            setfees,
+            city
+        }
+        console.log(data);
+        createProfile(data);
 
-        const form = document.getElementById("formsubmit");
-        const formData = new FormData(form);
-
+    });
+    async function createProfile(data) {
+        let response;
         try {
-            const response = await fetch(`${baseURL}/profile`, {
+            response = await fetch(`http://localhost:8080/api/profile`, {
                 method: "POST",
                 headers: {
+                    "Content-Type": "application/json", 
                     Authorization: JSON.parse(localStorage.getItem("token")),
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(data)
             });
 
-            console.log(response);
+            const responseData = await response.json();
+            console.log(responseData);
             // Handle the response
+            alert(responseData.msg);
         } catch (error) {
-            // Handle the error
             console.log(error);
-            alert("Please fill all the details and Model perfectly");
+            alert("An error occurred. Please try again.");
         }
-    });
-
-    // document.getElementById("formsubmit").addEventListener("submit", async (e) => {
-
-    e.preventDefault();
-    let image = document.getElementById("image").value;
-    let doctorName = document.getElementById("doctorName").value;
-    let qualifications = document.getElementById("qualifications").value;
-    let speciality = document.getElementById("speciality").value;
-    let experience = document.getElementById("experience").value;
-    let setfees = document.getElementById("setfees").value;
-    let city = document.getElementById("city").value;
-    let data = {
-        image,
-        doctorName,
-        qualifications,
-        speciality,
-        experience,
-        setfees,
-        city
     }
-    console.log(data);
-    const formData = new FormData();
-    formData.append("image", data.image);
-    formData.append("doctorName", data.doctorName);
-    formData.append("qualifications", data.qualifications);
-    formData.append("speciality", data.speciality);
-    formData.append("experience", data.setfees);
-    formData.append("city", data.city);
-    console.log(JSON.stringify(formData))
 
-    try {
-        const response = await fetch(`${baseURL}/profile`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data",
-                Authorization: JSON.parse(localStorage.getItem("token")),
-            },
-            body: JSON.stringify(data)
-        });
-
-        console.log(response);
-        // Handle the response
-    } catch (error) {
-        // Handle the error
-        console.log(error);
-        alert("Please fill all the details and Model perfectly");
-    }
-    });
+    // async function createProfile(data) {
+    //     const response = await fetch(`https://poco-backend.onrender.com/api/profile`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: JSON.parse(localStorage.getItem("token")),
+    //         },
+    //         body: JSON.stringify(data)
+    //     });
+    //     response = await res.json();
+    //     console.log(response);
+    //     // Handle the response
+    //     alert(response.msg)
+    // }
 </script>

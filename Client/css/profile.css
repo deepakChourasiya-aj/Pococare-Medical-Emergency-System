@@ -2,17 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 .container{
     height: 100vh;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    margin: auto;
     background-color:#FFF;
     column-gap: 30px;
 }

@@ -7,11 +7,11 @@
 }
 .doctor-detail {
   width: 50%;
-  border: 2px solid red;
 }
 .main {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 30px;
 }
 
 .container-form {
@@ -20,7 +20,8 @@
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
 }
 
 h1 {
@@ -43,7 +44,6 @@ input[type="date"],
 select {
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #ccc;
   font-size: 16px;
 }
 
@@ -59,7 +59,81 @@ select {
   border-radius: 5px;
   cursor: pointer;
 }
+#slots {
+  /* border: 2px solid greenyellow; */
+  margin: 20px;
+  gap: 20px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 30px;
+}
+#slots>div>span {
+  font-size: 25px;
+}
+#slots>div>button {
+  font-size: 15px;
+}
 
-.bookSlot:hover{
- background-color: aqua;
+.bookSlot:hover {
+  background-color: aqua;
+}
+
+/* --------------------
+\ */
+.doctors {
+  padding: 20px;
+}
+
+.doctors > div {
+  background-color: rgb(91, 94, 227);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.doctors img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.doctors h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.doctors h5 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.doctors strong {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.bookSlot {
+  background-color: rgb(80, 218, 46);
+  color: white;
+  padding: 10px;
+  border: none;
+}
+
+.bookSlot:focus {
+  background-color: #fdb836;
+}
+
+.doctor-detail {
+  width: 50%;
+  display: flex;
+  padding: 20px;
+  justify-content: space-evenly;
+  /* border: 4px solid red; */
+  height: 413px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }

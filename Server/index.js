@@ -32,12 +32,13 @@ app.get(
   }
 );
 
-const PORT = process.env.port || 9000; // Retrieves the port from environment variables or uses 9000 as a fallback
+// Retrieves the port from environment variables or uses 9000 as a fallback
+const PORT = process.env.port || 9000; 
 app.listen(PORT, async () => {
   try {
-    await connection; // Waits for the database connection to be established
+    await connection; 
     console.log(`Connected at http://localhost:${PORT}`);
   } catch (error) {
-    console.error("Error connecting:", error.message); // Prints an error message if there's an issue connecting to the database
+    console.error("Error connecting:", error.message); 
   }
 });

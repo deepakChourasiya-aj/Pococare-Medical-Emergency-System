@@ -3,10 +3,11 @@
     font-family: "Poppins", sans-serif;
   }
 .container{
-    display: flex;
-    align-items:center ;
-    justify-content: center;
-    gap:30px
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:10px;
+    width: 90%;
+    margin:auto;
 }
 .doctors{
     padding: 10px;
@@ -17,3 +18,62 @@
 #doctors-cont{
     margin: auto;
 }
+
+
+/* ----------------------
+ */
+ .doctors {
+    border: 3px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .doctors > div {
+    background: rgba(40, 43, 218, 0.76);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-style: bold;
+  }
+
+  .doctors img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .doctors h4 {
+    /* font-size: 20px; */
+    /* margin-bottom: 10px; */
+  }
+
+  .doctors h5 {
+    /* font-size: 10px; */
+    margin-bottom: 5px;
+  }
+
+  .doctors strong {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    /* font-size: 18px; */
+  }
+
+  .doctors button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .doctors button:hover {
+    background-color: #45a049;
+  }

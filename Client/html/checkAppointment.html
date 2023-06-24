@@ -5,23 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/checkApp.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <title>checkAppointment</title>
 </head>
 
 <body>
+    <section id="navbar">
+        <!-- Navbar Imported -->
+    </section>
     <a href="../index.html">Go to Home Page</a>
-    <h1 style="text-align: center;">Your Appointments</h1>
+    <h1 style="text-align: center;
+    margin: 25px;">Your Appointments</h1>
     <h1 id="showApp"></h1>
-    <div style="display: flex; justify-content: space-evenly; margin: auto;">
+    <div>
         <div id="appointmentsContainer">
         </div>
-        <div style="border: 2px solid red;" id="appointmentJoin"> 
-            <div class="container">
-                <h2>Join By Using Below Link On Time</h2>
+        <div  id="appointmentJoin">
+            <!-- <div class="container">
+                <h2>Join Video Consultation here by using below link</h2>
                 <p class="time">--:--:--</p>
-                <a href="https://64949a6d38621502b3f4df6c--merry-conkies-5f1443.netlify.app/index.html"><button class="join-btn">Join</button></a>
-              </div>
-              
+                <a href="https://64949a6d38621502b3f4df6c--merry-conkies-5f1443.netlify.app/index.html"><button
+                        class="join-btn">Join</button></a>
+            </div> -->
+
         </div>
     </div>
 </body>
@@ -34,31 +40,58 @@
     } else {
         confirmAppointment();
     }
+    // async function confirmAppointment() {
+    //     try {
+    //         let url = `https://funny-worm-tights.cyclic.app/api/apt`;
+    //         let res = await fetch(`https://funny-worm-tights.cyclic.app/api/apt`, {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 Authorization: JSON.parse(localStorage.getItem("token"))
+    //             }
+    //         });
+    //         res = await res.json();
+    //         console.log(res, 'dfdlkfjlksdfjldksf');
+    //         if (res.ok) {
+    //             alert(res.msg);
+    //         } else {
+    //             appointments(res.data)
+    //             alert(res.msg);
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //         alert("Error something went wrong please try again")
+    //     }
+    // }
+    // confirmAppointment()
+
     async function confirmAppointment() {
-        let url = `http://localhost:8080/api/apt`;
-        let res = await fetch(url, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: JSON.parse(localStorage.getItem("token")),
+        try {
+            let url = `https://poco-backend.onrender.com/api/apt`;
+            let res = await fetch(url, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": JSON.parse(localStorage.getItem("token"))
+                }
+            });
+            res = await res.json();
+            if (res.ok) {
+                alert(res.msg);
+            } else {
+                appointments(res.data);
+                alert(res.msg);
             }
-        });
-        res = await res.json();
-        console.log(res, 'dfdlkfjlksdfjldksf');
-        if (res.ok) {
-            alert(res.msg);
-        } else {
-            appointments(res.data)
-            alert(res.msg);
+        } catch (error) {
+            console.log(error);
+            alert("Error: Something went wrong. Please try again.");
         }
     }
-    confirmAppointment()
 
+    confirmAppointment();
 
     function appointments(res) {
         const appointments = res;
-        console.log(res,'lklkjlkjlk')
-        if(res.length==0){
-           return document.getElementById("showApp").innerText = "No Appointments were found"
+        if (res.length == 0) {
+            return document.getElementById("showApp").innerText = "No Appointments were found"
         }
 
         // Get the container element in which to append the data
@@ -82,7 +115,7 @@
             // Generate the HTML for each appointment
             return `
     <div class="appointment">
-      <h3>${patientName}</h3>
+      <h3>Patient : ${patientName}</h3>
       <p>Appointment Type: ${appointmentType}</p>
       <p>Doctor: ${doctorName}</p>
       <p>Age: ${ageOfPatient}</p>
@@ -92,6 +125,11 @@
       <p>Status: ${status ? "Completed" : "Pending"}</p>
       <p>Payment Status: ${paymentStatus ? "Paid" : "Unpaid"}</p>
       <p>Date: ${appointmentDate}</p>
+      <div>${appointmentType == "videoconsult" ? `<div  id="joinMeet">
+           Join Meet By Clicking on below
+           <a href="https://64949a6d38621502b3f4df6c--merry-conkies-5f1443.netlify.app/index.html"><button
+                        class="join-btn">Join</button></a>
+        </div>`: ``}</div>
     </div>
   `;
         });
@@ -101,3 +139,4 @@
 
     }
 </script>
+<script src="../script/appointmentNav.js"></script>

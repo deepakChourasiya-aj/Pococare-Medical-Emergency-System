@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/available.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <title>Available doctors</title>
 </head>
 <style>
@@ -14,57 +15,13 @@
 </style>
 
 <body>
-    <h1 style="text-align: center;">All Doctors</h1>
+    <section id="navbar">
+        <!-- Navbar Imported -->
+    </section>
+
+    <h1 style="text-align: center; margin: 40px; ">All Available Doctors</h1>
     <div id="doctors-cont">
         <div class="container">
-            <!-- <div class="doctors" style="border: 3px solid black;">
-                <div style="background-color: burlywood;">
-                    <img style="border-radius: 50%;"
-                        src="https://static1.personality-database.com/profile_images/03efe57d24b74353b2fb7575e8c9f3a1.png"
-                        alt="">
-                    <h4>Name DEEPAK CHOURASIYA</h4>
-                    <h5>Qualifications MBBS MUMBAI</h5>
-                    <h5>Experience 2 YEARS</h5>
-                    <h5>Fees 2000</h5>
-                </div>
-                <div style="background-color: aqua;" class="slots">
-                    <h4> Slots</h4>
-                    <div style="border : 3px solid red">
-                        <button>11 - 12 PM</button>
-                        <br>
-                        <span>Available </span>
-                    </div>
-                    <div style="border : 3px solid red">
-                        <button>11 - 12 PM</button>
-                        <br>
-                        <span>Available </span>
-                    </div>
-                </div>
-            </div>
-            <div class="doctors" style="border: 3px solid black;">
-                <div style="background-color: burlywood;">
-                    <img style="border-radius: 50%;"
-                        src="https://static1.personality-database.com/profile_images/03efe57d24b74353b2fb7575e8c9f3a1.png"
-                        alt="">
-                    <h4>Name DEEPAK CHOURASIYA</h4>
-                    <h5>Qualifications MBBS MUMBAI</h5>
-                    <h5>Experience 2 YEARS</h5>
-                    <h5>Fees 2000</h5>
-                </div>
-                <div style="background-color: aqua;" class="slots">
-                    <h4> Slots</h4>
-                    <div style="border : 3px solid red">
-                        <button>11 - 12 PM</button>
-                        <br>
-                        <span>Available </span>
-                    </div>
-                    <div style="border : 3px solid red">
-                        <button>11 - 12 PM</button>
-                        <br>
-                        <span>Available </span>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </body>
@@ -74,7 +31,7 @@
     const container = document.querySelector(".container");
 
     async function allDoctors() {
-        let res = await fetch("http://localhost:8080/api/doctors/access", {
+        let res = await fetch("https://poco-backend.onrender.com/api/doctors/access", {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -94,7 +51,7 @@
         container.innerHTML = doc.map((item) => {
             return `
             <div class="doctors" style="border: 3px solid black;">
-                <div style="background-color: burlywood;">
+                <div >
                     <img style="border-radius: 50%;"
                         src="${item.image}"
                         alt="">
@@ -123,3 +80,4 @@
         }
     }
 </script>
+<script src="../script/navbar.js"></script>

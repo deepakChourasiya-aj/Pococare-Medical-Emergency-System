@@ -10,13 +10,11 @@ document.querySelector("#navbar").innerHTML = `
         </div>
     </div>
     <div data-aos="zoom-out" data-aos-duration="1000" id="nav-menu">
-        <li id="book-app">Book appointment</li>
         <li id="find-doc">Upcoming Appointment</li>
-            <li id ="doctor-access">Create Profile</li>
-        <li>Emergency Support</li>
+        <li id="doctor-admin">Create Slot</li>
+        <li id ="doctor-access">Create Profile</li>
     </div>
     <div data-aos="zoom-out" data-aos-duration="1000" id="nav-user-details">
-
         <button id="nav-login">Login</button>
         <button id="nav-reg">Signup</button> 
         <button id="nav-logout">Logout</button> 
@@ -24,19 +22,23 @@ document.querySelector("#navbar").innerHTML = `
         
 </div>
 `;
-
 document.getElementById("nav-reg").addEventListener("click", (e) => {
-  window.location.href = "./html/register.html";
+  window.location.href = "./register.html";
 });
 document.getElementById("nav-login").addEventListener("click", (e) => {
-  window.location.href = "./html/login.html";
+  window.location.href = "./login.html";
 });
 
 document.getElementById("find-doc").addEventListener("click", (e) => {
-  window.location.href = "./html/checkAppointment.html";
+  window.location.href = "./checkAppointment.html";
 });
-document.getElementById("book-app").addEventListener("click", (e) => {
-  window.location.href = "./html/available.html";
+document.getElementById("doctor-admin").addEventListener("click", (e) => {
+  let role = JSON.parse(localStorage.getItem("role"));
+  if (role === "doctor") {
+    window.location.href = "scheduling.html";
+  } else {
+    alert("Access denied this special access only for doctors");
+  }
 });
 document.getElementById("nav-img").addEventListener("click", (e) => {
   window.location.href = "../index.html";
@@ -52,7 +54,7 @@ document.getElementById("nav-logout").addEventListener("click", (e) => {
 document.getElementById("doctor-access").addEventListener("click", (e) => {
   let role = JSON.parse(localStorage.getItem("role"));
   if (role === "doctor") {
-    window.location.href = "./html/profile.html";
+    window.location.href = "scheduling.html";
   } else {
     alert("Access denied this special access only for doctors");
   }

@@ -37,7 +37,7 @@
                     </div>
                     <div class="field input-field">
                         <!-- <input type="tel" placeholder="Mobile No" class="input" id="mobile"> -->
-                        <select class="input" name="role" id="">
+                        <select class="input" name="role" id="role">
                             <option value="doctor"> Doctor</option>
                             <option value="patient">Patient</option>
                         </select>
@@ -57,7 +57,7 @@
 
 </html>
 <script>
-    const baseURL = "http://localhost:8080/api/register"
+    const baseURL = "https://poco-backend.onrender.com/api/register"
 
     let button = document.querySelector('#signup')
     button.addEventListener('click', (e) => {
@@ -67,11 +67,12 @@
         let email = document.getElementById("email").value
         let mobile = document.getElementById("mobile").value
         let password = document.getElementById("password").value
+        let role = document.getElementById("role").value
         if (firstName &&
             lastName &&
             email &&
             mobile &&
-            password) {
+            password && role) {
             console.log('okk')
         } else {
             return alert('please fill the required detials')
@@ -82,7 +83,8 @@
             lastName,
             email,
             mobile,
-            password
+            password,
+            role
         }
         console.log(obj);
         register(obj);
@@ -100,17 +102,10 @@
         let data = await res.json();
         console.log(data);
         if (res.ok) {
-            alert(data.msg)
-            alert(data.msg);
-            if (data.role == 'patient') {
-                console.log(data.msg.role, 'check')
-                window.location.href = "../index.html"
-            }
-            if (data.role == 'doctor') {
-                window.location.href = "./profile.html"
-            }
+            alert(data.message)
+           window.location.href= "./login.html"
         } else {
-            alert('error in registering ')
+            alert(data.message)
         }
     }
 </script>

@@ -43,3 +43,80 @@ body{
     cursor: pointer;
   }
   
+/* -------------------------------------- */
+#appointmentsContainer{
+  display: grid;
+  width: 90%;
+  margin: auto;
+  grid-template-columns: repeat(3,1fr);
+  gap:20px
+}
+
+  .appointment {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .appointment h3 {
+    color: #333;
+    font-size: 18px;
+    margin-top: 0;
+  }
+
+  .appointment p {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .appointment p:last-child {
+    margin-bottom: 0;
+  }
+
+  .appointment p strong {
+    font-weight: bold;
+  }
+
+  .appointment p span {
+    color: #888;
+  }
+
+  .appointment .status {
+    font-weight: bold;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+  }
+
+  .appointment .status.completed {
+    background-color: #4caf50;
+  }
+
+  .appointment .status.pending {
+    background-color: #f44336;
+  }
+
+  .appointment .payment-status {
+    font-weight: bold;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+  }
+
+  .appointment .payment-status.paid {
+    background-color: #4caf50;
+  }
+
+  .appointment .payment-status.unpaid {
+    background-color: #f44336;
+  }
+
+  .appointment .date {
+    font-weight: bold;
+  }
+
+
+  
