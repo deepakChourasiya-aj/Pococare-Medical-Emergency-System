@@ -14,6 +14,7 @@ appointmentRoute.post(
   bookAppointment
 );
 appointmentRoute.delete("/apt", validRoleAuth(["patient"]), cancelAppointment);
+
 appointmentRoute.get(
   "/apt",
   validRoleAuth(["patient", "doctor"]),
